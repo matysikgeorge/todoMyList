@@ -1,0 +1,25 @@
+.footer{
+&__wrapper {
+  padding: 18px 24px;
+  border-radius: 0 0 16px 16px;
+  background: #f1eeee;
+  display: flex;
+  justify-content: space-between;
+}
+
+&__button-left {
+  width: 214px;
+  background: #6c757d;
+  &:hover {
+    background-color: #5a5e5b;
+  }
+}
+
+&__button-right {
+  width: 131px;
+  background: #dc3545;
+  &:hover {
+    background-color: #f92c1a;
+  }
+}
+}

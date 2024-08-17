@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./styles/style.css" />
+    <script src="./scripts/script.js" defer></script>
+    <title>ToDo</title>
+  </head>
+  <body>
+    <!-- HEADER -->
+    <div class="container">
+      <header class="header">
+        <div class="header__wrapper">
+          <h1 class="header__title">ToDo List</h1>
+        </div>
+      </header>
+      <!-- MAIN  -->
+      <main class="main">
+        <div class="main__wrapper wrapper">
+          <form class="main__form">
+            <input class="main__task" type="text" />
+            <input class="main__button button"  type="submit" value="Добавить"/>
+          </form>
+          <div class="main__line"></div>
+          <ul class="main__list">
+            <li class="main__item">
+              <input type="checkbox" />
+              <p class="main__item-text">
+                Сделать удаление каждого элемента по крестику справа
+              </p>
+              <button class="main__item-button">❌</button>
+            </li>
+            <li class="main__item">
+              <input type="checkbox" />
+              <p class="main__item-text">
+                Сделать добавление элементов в список
+              </p>
+              <button class="main__item-button">❌</button>
+            </li>
+            <li class="main__item">
+              <input type="checkbox" />
+              <p class="main__item-text">Сверстать тудушку</p>
+              <button class="main__item-button">❌</button>
+            </li>
+            <li class="main__item">
+              <input type="checkbox" />
+              <p class="main__item-text">Сдать теорию</p>
+              <button class="main__item-button">❌</button>
+            </li>
+          </ul>
+        </div>
+        <!-- FOOTER -->
+        <footer>
+          <div class="footer__wrapper wrapper">
+            <button class="footer__button-left button">Удалить завершенные</button>
+            <button class="footer__button-right button">Удалить все</button>
+          </div>
+        </footer>
+      </main>
+    </div>
+  </body>
+</html>
