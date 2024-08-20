@@ -79,3 +79,16 @@
 //   <button class="main__item-button">❌</button>
 // </li>
 // </ul>
+
+
+
+
+
+
+// // mainItem.remove();
+  // //- item - это id выбранного элемента
+  // let item = +mainItem.querySelector(".main__item-text").id;
+  // //- index - это индекс элемента в массиве чей id === item     //- больше никогда так не делать, ай ай ай
+  // let index = todoList.findIndex(el => el.id === item)
+  // //- удалить элемент, удалить index из todoList
+  // todoList.splice(index, 1)

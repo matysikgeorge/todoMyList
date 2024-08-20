@@ -15,6 +15,7 @@
 
   &__task {
     width: 356px;
+    padding-left: 13.56px;
     height: 38px;
     border: 1px solid #ced4da;
     border-radius: 4px;
@@ -31,6 +32,16 @@
   &__item {
     display: flex;
     margin-top: 32px;
+  }
+
+  &__item-checkbox {
+    width: 16px;
+    accent-color: #7749F8;
+    &:checked ~ p{
+      color: #54595E;
+      text-decoration: line-through;
+      opacity: 0.5;
+    }
   }
 
   &__item-text {

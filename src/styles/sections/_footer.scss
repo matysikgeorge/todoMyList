@@ -7,6 +7,10 @@
   justify-content: space-between;
 }
 
+&__wrapper-delete{
+  display: none;
+}
+
 &__button-left {
   width: 214px;
   background: #6c757d;

@@ -87,6 +87,7 @@ body {
 }
 .main__task {
   width: 356px;
+  padding-left: 13.56px;
   height: 38px;
   border: 1px solid #ced4da;
   border-radius: 4px;
@@ -101,6 +102,15 @@ body {
 .main__item {
   display: flex;
   margin-top: 32px;
+}
+.main__item-checkbox {
+  width: 16px;
+  accent-color: #7749F8;
+}
+.main__item-checkbox:checked ~ p {
+  color: #54595E;
+  text-decoration: line-through;
+  opacity: 0.5;
 }
 .main__item-text {
   width: 100%;
@@ -120,6 +130,9 @@ body {
   background: #f1eeee;
   display: flex;
   justify-content: space-between;
+}
+.footer__wrapper-delete {
+  display: none;
 }
 .footer__button-left {
   width: 214px;
