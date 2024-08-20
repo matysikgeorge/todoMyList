@@ -9,22 +9,25 @@ const deleteButtonsNone = document.querySelector(".footer__wrapper");
 // const deleteCompletedButton = document.querySelector(".footer__button-left");
 // const deleteItemButton = mainItem.querySelector(".main__item-button");
 
-
-let todoList = [];
+let todoList = JSON.parse(localStorage.getItem("todoList")) ?? [];
 
 // - Функция добавления задач
 function addTask(text) {
-  todoList.push({ task: text, isDone: false, id: Date.now() });
+  todoList.push({ task: text.trim(), isDone: false, id: Date.now() });
   deleteButtonsNone.classList.remove("footer__wrapper-delete");
   console.log(todoList);
   renderTasks(todoList);
 }
-
 // - Создаем логику для form в которой у нас содержится input и кнопка "Добавить" и куда приходит запись информации.
 formNode.addEventListener("submit", (event) => {
   event.preventDefault();
-  addTask(inputForm.value);
-  inputForm.value = "";
+  if (inputForm.value.trim().length) {
+    addTask(inputForm.value);
+    inputForm.value = "";
+  } else if (inputForm.value.trim().length === 0) {
+    inputForm.value = "";
+    return;
+  }
 });
 
 //- Создаем функцию создания задач
@@ -37,16 +40,12 @@ function createTask(arrayTask) {
               <button class="main__item-button">❌</button>
   `;
 
-  //- Функция провреки нажатия checkbox
+  //- Функция проверки нажатия checkbox
 
   const checkboxButton = mainItem.querySelector(".main__item-checkbox");
-  checkboxButton.addEventListener("click", () => {
-    if (checkboxButton.checked) {
-      arrayTask.isDone = true;
-    } else {
-      arrayTask.isDone = false;
-    }
-    console.log(arrayTask);
+  checkboxButton.checked = arrayTask.isDone;
+  checkboxButton.addEventListener("change", () => {
+    btnChecked(arrayTask.id);
   });
 
   const deleteItemButton = mainItem.querySelector(".main__item-button");
@@ -54,6 +53,13 @@ function createTask(arrayTask) {
     deleteCrossButton(arrayTask.id)
   );
   return mainItem;
+}
+
+function btnChecked(id) {
+  let findChecked = todoList.find((el) => el.id === id);
+  findChecked.isDone = !findChecked.isDone;
+  console.log(findChecked.isDone);
+  renderTasks(todoList);
 }
 
 // - Функция удаления элементов по крестику
@@ -68,14 +74,15 @@ function getDeletedCompletedButton() {
   renderTasks(todoList);
 }
 
-//- Создаем функцию отрисовки 
+//- Создаем функцию отрисовки
 function renderTasks(newData) {
   mainList.innerHTML = ""; // очищаем всю форму, но при вводе нового таска мы увидим удаленный task. В самом массиве значение остается и плюсуется к старому массиву.
   newData.forEach((element) => {
     const words = createTask(element);
     mainList.append(words); // куда, что делаем и что добавляем
   });
-  deleteBtn()
+  saveLocalStorage(todoList);
+  deleteBtn();
 }
 
 const deleteCompletedButton = document.querySelector(".footer__button-left");
@@ -85,12 +92,12 @@ const ButtonDeleteAll = document.querySelector(".footer__button-right");
 ButtonDeleteAll.addEventListener("click", () => {
   mainList.innerHTML = "";
   todoList = []; // либо 0, либо "";
-  // deleteButtonsNone.classList.add("footer__wrapper-delete");
-  deleteBtn()
+  renderTasks(todoList);
+  deleteBtn();
 });
 
 // прописать логику для скрытия нижних кнопок, закрытие задач по крестикам и по завершенным.
-// и при создании тасков вовзвращались кнопки
+// и при создании task возвращались кнопки
 // класс - list, а класс remove
 
 function deleteBtn() {
@@ -98,3 +105,9 @@ function deleteBtn() {
     deleteButtonsNone.classList.add("footer__wrapper-delete");
   }
 }
+
+function saveLocalStorage(todoData) {
+  localStorage.setItem("todoList", JSON.stringify(todoData));
+}
+
+renderTasks(todoList);
